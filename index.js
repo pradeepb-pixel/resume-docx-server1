@@ -12,3 +12,25 @@ app.post("/generate-docx", async (req, res) => {
     sections: [
       {
         children: [
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: data.name,
+                bold: true,
+                size: 36,
+              }),
+            ],
+          }),
+          new Paragraph({
+            text: data.title || "",
+            spacing: { after: 300 },
+          }),
+
+          new Paragraph({ text: "SUMMARY", bold: true }),
+          new Paragraph({ text: data.summary || "" }),
+
+          new Paragraph({ text: "SKILLS", bold: true }),
+          new Paragraph({ text: data.skills || "" }),
+
+          new Paragraph({ text: "EXPERIENCE", bold: true }),
+          new Paragraph({ text: data.experience || "" }),
