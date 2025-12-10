@@ -53,4 +53,10 @@ app.post("/generate-docx", async (req, res) => {
   res.setHeader("Content-Disposition", "attachment; filename=Resume.docx");
   res.send(buffer);
 });
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log("Server running on port " + PORT);
+});
+
 
