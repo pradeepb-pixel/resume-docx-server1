@@ -34,3 +34,23 @@ app.post("/generate-docx", async (req, res) => {
 
           new Paragraph({ text: "EXPERIENCE", bold: true }),
           new Paragraph({ text: data.experience || "" }),
+                    new Paragraph({ text: "EDUCATION", bold: true }),
+          new Paragraph({ text: data.education || "" }),
+
+          new Paragraph({ text: "CERTIFICATIONS", bold: true }),
+          new Paragraph({ text: data.certifications || "" }),
+        ],
+      },
+    ],
+  });
+
+  const buffer = await Packer.toBuffer(doc);
+
+  res.setHeader(
+    "Content-Type",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+  );
+  res.setHeader("Content-Disposition", "attachment; filename=Resume.docx");
+  res.send(buffer);
+});
+
